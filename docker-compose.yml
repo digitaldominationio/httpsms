@@ -31,14 +31,15 @@ services:
       context: ./api
     environment:
       ENV: production
-      GCP_PROJECT_ID: httpsms-docker
+      GCP_PROJECT_ID: ${GCP_PROJECT_ID:-httpsms-docker}
       USE_HTTP_LOGGER: "true"
       ENTITLEMENT_ENABLED: "false"
       EVENTS_QUEUE_TYPE: emulator
       EVENTS_QUEUE_NAME: events
       EVENTS_QUEUE_ENDPOINT: http://api:8000/v1/events
-      EVENTS_QUEUE_USER_API_KEY: system-user-api-key
-      EVENTS_QUEUE_USER_ID: system-user-id
+      EVENTS_QUEUE_USER_API_KEY: ${EVENTS_QUEUE_USER_API_KEY:-system-user-api-key}
+      EVENTS_QUEUE_USER_ID: ${EVENTS_QUEUE_USER_ID:-system-user-id}
+      FIREBASE_CREDENTIALS: ${FIREBASE_CREDENTIALS:-}
       SMTP_FROM_NAME: httpSMS
       SMTP_FROM_EMAIL: httpsms@andro.ddmn.us
       SMTP_HOST: smtp.mailtrap.io
