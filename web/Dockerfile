@@ -42,10 +42,11 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml ./
 
-# Install pnpm
-RUN npm install -g pnpm
+# Install pnpm (pinned to v9 which matches lockfile v9.0 and does not
+# enforce blocked build scripts that break pnpm v10+)
+RUN npm install -g pnpm@9
 
-RUN pnpm install
+RUN pnpm install --no-frozen-lockfile
 
 COPY . .
 RUN pnpm run generate
