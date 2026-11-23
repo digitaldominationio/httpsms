@@ -30,7 +30,7 @@ services:
     build:
       context: ./api
     environment:
-      ENV: production
+      ENV: ${ENV:-production}
       GCP_PROJECT_ID: ${GCP_PROJECT_ID:-httpsms-docker}
       USE_HTTP_LOGGER: "true"
       ENTITLEMENT_ENABLED: "false"
